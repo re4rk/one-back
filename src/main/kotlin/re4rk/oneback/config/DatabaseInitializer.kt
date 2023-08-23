@@ -1,6 +1,5 @@
 package re4rk.oneback.config
 
-import org.apache.juli.logging.LogFactory
 import org.springframework.boot.CommandLineRunner
 import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
@@ -27,8 +26,6 @@ class DatabaseInitializer(
     }
 
     private fun populate() {
-        // logging
-        LogFactory.getLog(this::class.java).info("DatabaseInitializer#populate()")
         populateDummy()
     }
 
