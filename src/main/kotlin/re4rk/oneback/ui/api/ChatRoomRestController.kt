@@ -7,7 +7,7 @@ import re4rk.oneback.application.ChatRoomService
 import re4rk.oneback.domain.chatRoom.ChatRoom
 
 @RestController
-class CHatRoomRestController(private val chatRoomService: ChatRoomService) {
+class ChatRoomRestController(private val chatRoomService: ChatRoomService) {
     @GetMapping("/api/chat-rooms")
     fun findAll(): ResponseEntity<Result<List<ChatRoom>>> {
         return ResponseEntity.ok(Result.success(chatRoomService.findAll()))
