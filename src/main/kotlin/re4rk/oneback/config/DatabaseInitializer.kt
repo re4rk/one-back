@@ -32,9 +32,11 @@ class DatabaseInitializer(
     private fun populateDummy() {
         List(10) {
             ChatRoom(
-                title = "상대방",
-                description = "오늘 뭐할래?",
-                localDateTime = LocalDateTime.now(),
+                title = "title$it",
+                profile = "https://i.pravatar.cc/150?img=$it",
+                messageCount = it,
+                lastMessage = "lastMessage$it",
+                lastMessageTime = LocalDateTime.now(),
                 status = ChatStatus.READ,
             )
         }.let(chatRoomRepository::saveAll)

@@ -1,7 +1,6 @@
 package re4rk.oneback.domain.chatRoom
 
 import jakarta.persistence.Column
-import jakarta.persistence.Embedded
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
@@ -11,18 +10,41 @@ import java.time.LocalDateTime
 @Entity
 class ChatRoom(
     @Column(nullable = false)
-    var title: String,
+    val title: String,
 
     @Column(nullable = false)
-    var description: String,
+    val profile: String,
 
     @Column(nullable = false)
-    var localDateTime: LocalDateTime,
+    val messageCount: Int,
 
-    @Embedded
-    var status: ChatStatus,
+    @Column(nullable = false)
+    val lastMessage: String,
 
-    @jakarta.persistence.Id @Id
+    @Column(nullable = false)
+    val lastMessageTime: LocalDateTime,
+
+    @Column(nullable = false)
+    val status: String,
+
+    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    val id: Long = 0L
-)
+    val id: Long = 0L,
+) {
+    constructor(
+        title: String,
+        profile: String,
+        messageCount: Int,
+        lastMessage: String,
+        lastMessageTime: LocalDateTime,
+        status: ChatStatus,
+    ) : this(
+        title = title,
+        profile = profile,
+        messageCount = messageCount,
+        lastMessage = lastMessage,
+        lastMessageTime = lastMessageTime,
+        status = status.value,
+    )
+}
